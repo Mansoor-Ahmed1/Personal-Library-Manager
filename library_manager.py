@@ -5,14 +5,14 @@ library = [{
         'author': 'George Orwell',
         'publication_year': '1949',
         'genre': 'Dystopian',
-        'status': 'Available'
+        'status': 'Read'
     },
     {
         'title': 'The Hobbit',
         'author': 'J.R.R. Tolkien',
         'publication_year': '1937',
         'genre': 'Fantasy',
-        'status': 'Borrowed'
+        'status': 'Unread'
     }]
 
 def main_menu():
@@ -91,10 +91,20 @@ def search_book():
             print("Sorry, the library does not contain such a book")
 
 def display_books():
-    print(library)
+    for idx, book in enumerate(library, start=1):
+        print(f"\nBook {idx}:")
+        for key, value in book.items():
+            print(f"{key}: {value}")
 
 def display_statistics():
-    print("Stats")
+    books_count, read_books = 0,0
+    for book in library:
+        books_count+=1
+        if book["status"] == "Read":
+            read_books+=1
+    print(f"{read_books} books in the library have been Read.")
+    print(f"There are {books_count} books in the library")
+    
 
 if __name__ == "__main__":
     main_menu()
